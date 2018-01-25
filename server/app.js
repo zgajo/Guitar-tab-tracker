@@ -1,9 +1,10 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
+var logger = require('morgan'); // prints in console various stuff, like which route has been visited etc
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const cors = require('cors'); //gives permission to visit data from other domain
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -19,6 +20,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(cors());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
