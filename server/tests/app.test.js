@@ -30,5 +30,38 @@ describe("JUST SOME TEST", ()=>{
 
     })
 
+
     
+})
+
+describe("POST /register", ()=>{
+
+    it("Should register person", (done) => {
+
+        const text = `Welcome to POST /register test@gmail.com`;
+
+        request(app)
+			.post('/register')
+			.send({
+                email: "test@gmail.com",
+                password: "test123"
+            })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+			.expect(200)
+			.expect((res)=>{
+                const response = JSON.parse(res.text);
+				expect(response.msg).toBe(text);
+			})
+			.end((err, res)=>{
+				// If there waas an error 
+				if(err) {
+					return done(err)
+				}
+				// If everything's fine, search in database
+			    done()
+			})
+
+    })
+
 })
