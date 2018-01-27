@@ -1,9 +1,7 @@
 const Api = require( '@/services/api')
 
-console.log(Api)
-
 const register = (credentials)=>{
-    return Api().post('register', credentials)
+    return Api().post('users/register', credentials)
 }
 
 module.exports = {
