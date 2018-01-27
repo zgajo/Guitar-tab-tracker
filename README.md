@@ -1,6 +1,6 @@
 <h1>Going through FreeCodeCamp tutorial and fixing some stuff which I think it could be better in application</h1>
 
-<h1>Some of my changes:</h1>
+<h2>Some of my changes:</h2>
 <ul>
 <li>Wrote unit tests</li>
 <li>Set api calls from frontend as Vue plugins, and set them to communicate with module.exports and require</li>
@@ -18,16 +18,16 @@
 <li>Vee-validator</li> # Validate data before sending them
 </ul>
 
-<h3>Backend:</h3>
+<h2>Backend:</h2>
 
-<h4>Unit tests:</h1>
+<h3>Unit tests:</h1>
 <ul>
 <li>Mocha</li> #test framework
 <li>Expect</li> #Checking functions
 <li>Supertest</li> #For visiting routes
 </ul>
 
-<h4>For api:</h4>
+<h3>For api:</h3>
 <ul>
 <li>Cors</li> # Allows api calls from other domains
 <li>Morgan</li> # Console api logger
