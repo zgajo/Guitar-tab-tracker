@@ -1,4 +1,5 @@
 <template>
+<v-container grid-list-xl fill-height>
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
@@ -81,6 +82,7 @@
       </li>
     </ul>
   </div>
+</v-container>
 </template>
 
 <script>

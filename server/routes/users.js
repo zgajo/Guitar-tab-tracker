@@ -16,4 +16,7 @@ router.post('/register',
             AuthenticationControllerPolicy.register, // middleware
             AuthenticationController.register);
 
+router.post('/login', 
+            AuthenticationController.login);
+
 module.exports = router;

@@ -1,12 +1,7 @@
 <template>
-<v-container grid-list-xl fill-height>
-    <v-layout row wrap align-center>
-      <v-flex xs6 pa-0 offset-xs3 class="white elevation-1">
 
-        <v-toolbar flat dense dark>
-          <v-toolbar-title>Register</v-toolbar-title>
-        </v-toolbar>
-
+ <v-flex xs6 pa-0 offset-xs3 class="white elevation-1">
+        <form-header></form-header>
         <v-flex>
           <v-form ma-3>
 
@@ -37,14 +32,17 @@
           </v-form>
 
         </v-flex>
-
-      </v-flex>
-    </v-layout>
-  </v-container>
+ </v-flex>
 </template>
 
 <script>
+import FormHeader from './FormHeader'
+
 export default {
+  name:"Register",
+  components: {
+    FormHeader
+  },
   data(){
     return{
       email: '',
@@ -92,15 +90,15 @@ export default {
 <style scoped>
 
 .primary--text {
-    color: #3aafa9 !important;
+    color: #18252a !important;
 }
 
 .application .theme--dark.toolbar{
-      background-color: #18252a;
+      background-color: #3aafa9;
 }
 
 .primary {
-    background-color: #18252a !important;
-    border-color: #18252a !important;
+    background-color: #3aafa9 !important;
+    border-color: #3aafa9 !important;
 }
 </style>

@@ -26,7 +26,7 @@ var server = http.createServer(app);
 
 // Sync tries to create new database if doesn't exists
 // tries to create table inside database if table doesn't exist
-sequelize.sync().then( ()=>{
+sequelize.sync({force: true}).then( ()=>{
   server.listen(config.port);
   console.log("Server started on port " + config.port)
 } )

@@ -35,6 +35,8 @@
 <li>Body-parser</li> #Parse incoming request bodies in a middleware before your handlers
 <li>Sequelize</li> # ORM for PostgreSQL, MySQL, SQLite and MSSQL  db's
 <li>Joi</li> # Framework validator for incoming requests
+<li>JWT token</li> # Token which client needs to send to server
+<li>Bcrypt</li> # Hashing password
 </ul>
 
 Next is lecture 3
