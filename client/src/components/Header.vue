@@ -7,11 +7,11 @@
       <v-icon>search</v-icon>
     </v-btn>
 
-    <router-link to="/auth/register" tag="div">
+    <router-link to="/auth/register" tag="div" v-if="!$store.state.isLoggedIn">
         <v-btn flat>Sign up</v-btn>
     </router-link>
 
-    <router-link to="/auth/login" tag="div">
+    <router-link to="/auth/login" tag="div" v-if="!$store.state.isLoggedIn">
         <v-btn flat>Sign in</v-btn>
     </router-link>
     

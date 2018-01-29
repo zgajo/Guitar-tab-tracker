@@ -16,6 +16,7 @@
 <li>Axios</li> #For api calls
 <li>Vuetify</li> # Vue material component framework
 <li>Vee-validator</li> # Validate data before sending them
+<li>Vuex</li> # Centralized store for all the components in an application, w
 </ul>
 
 <h2>Backend:</h2>

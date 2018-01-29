@@ -64,6 +64,10 @@ export default {
         await this.$authRegister({
           email: this.email,
           password: this.password
+        }).then(res => {
+          console.log(res)
+          this.$store.commit("setToken", res.data.token);
+          this.$store.commit("setUser", res.data.user);
         })
       } 
       catch(e){

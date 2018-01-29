@@ -27,7 +27,7 @@
               <v-alert color="error" icon="warning" :value="error" v-html="error">
               </v-alert>
 
-              <v-btn  color="primary" dark @click="registerValidator">Login</v-btn>
+              <v-btn  color="primary" dark @click="loginValidator">Login</v-btn>
           </v-form>
 
         </v-flex>
@@ -44,8 +44,8 @@ export default {
   },
   data(){
     return{
-      email: '',
-      password: '',
+      email: 't@nike.com',
+      password: 'Xxx123456',
       error: ""
     }
   },
@@ -61,8 +61,13 @@ export default {
 
       try{
         await this.$authLogin({
+
           email: this.email,
           password: this.password
+
+        }).then(res => {
+          this.$store.dispatch("setToken", res.data.token);
+          this.$store.commit("setUser", res.data.user);
         })
       } 
       catch(e){

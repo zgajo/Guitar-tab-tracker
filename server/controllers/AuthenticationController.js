@@ -18,7 +18,17 @@ module.exports = {
         
         try{
             const user = await User.create(req.body);
-            res.send(user.toJSON())
+            
+            const userJson = user.toJSON();
+
+            delete userJson.password;
+
+            const token = jwtSignUser(userJson);
+
+            res.send({
+                user: userJson,
+                token
+            })
         }
         catch(e){
             res.status(400).send({
@@ -31,7 +41,7 @@ module.exports = {
     async login(req, res){
         
         try{
-            
+
             const {email, password} = req.body;
             const user = await User.findOne({
                 where: {
@@ -59,7 +69,7 @@ module.exports = {
 
             res.send({
                 user: userJson,
-                token: jwtSignUser(userJson)
+                token
             })
         }
         catch(e){
