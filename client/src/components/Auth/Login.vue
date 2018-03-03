@@ -1,9 +1,6 @@
 <template>
- <v-flex xs6 pa-0 offset-xs3 class="white elevation-1">
-        <form-header></form-header>
-        <v-flex>
-          <v-form ma-3>
 
+<panel>
               <v-text-field
                 v-model="email"
                 label="Email"
@@ -28,81 +25,69 @@
               </v-alert>
 
               <v-btn  color="primary" dark @click="loginValidator">Login</v-btn>
-          </v-form>
-
-        </v-flex>
-         </v-flex>
+          </panel>
 </template>
 
 <script>
-import FormHeader from './FormHeader'
+import Panel from "../PanelAuth";
 
 export default {
-  name:"login",
+  name: "login",
   components: {
-    FormHeader
+    Panel
   },
-  data(){
-    return{
-      email: 't@nike.com',
-      password: 'Xxx123456',
+  data() {
+    return {
+      email: "t@nike.com",
+      password: "Xxx123456",
       error: ""
+    };
+  },
+  watch: {
+    error(val) {
+      setTimeout(() => {
+        this.error = "";
+      }, 6000);
     }
   },
-  watch:{
-    error(val){
-      setTimeout(()=>{
-        this.error = ""
-      }, 6000)
-    }
-  },
-  methods:{
-    async login(){
-
-      try{
+  methods: {
+    async login() {
+      try {
         await this.$authLogin({
-
           email: this.email,
           password: this.password
-
         }).then(res => {
           this.$store.dispatch("setToken", res.data.token);
           this.$store.commit("setUser", res.data.user);
-        })
-      } 
-      catch(e){
+          this.$router.push({ name: "root" });
+        });
+      } catch (e) {
         this.error = e.response.data.error;
       }
-
     },
-    loginValidator(){
-
-      this.$validator.validateAll().then( res => {
-
-        if(res){
-          this.login()
+    loginValidator() {
+      this.$validator.validateAll().then(res => {
+        if (res) {
+          this.login();
         }
-        
-      })
+      });
     }
-
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .primary--text {
-    color: #18252a !important;
+  color: #18252a !important;
 }
 
-.application .theme--dark.toolbar{
-      background-color: #3aafa9;
+.application .theme--dark.toolbar {
+  background-color: #3aafa9;
 }
 
 .primary {
-    background-color: #3aafa9 !important;
-    border-color: #3aafa9 !important;
+  background-color: #3aafa9 !important;
+  border-color: #3aafa9 !important;
 }
 </style>

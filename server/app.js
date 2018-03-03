@@ -9,6 +9,7 @@ const cors = require('cors'); //gives permission to visit data from other domain
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var songs = require('./routes/songs');
 
 var app = express();
 
@@ -27,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-
+app.use('/songs', songs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

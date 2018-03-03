@@ -1,10 +1,6 @@
 <template>
 
- <v-flex xs6 pa-0 offset-xs3 class="white elevation-1">
-        <form-header></form-header>
-        <v-flex>
-          <v-form ma-3>
-
+<panel>
               <v-text-field
                 v-model="email"
                 label="Email"
@@ -29,19 +25,16 @@
               </v-alert>
 
               <v-btn  color="primary" dark @click="registerValidator">Register</v-btn>
-          </v-form>
-
-        </v-flex>
- </v-flex>
+          </panel>
 </template>
 
 <script>
-import FormHeader from './FormHeader'
+import Panel from '../PanelAuth'
 
 export default {
   name:"Register",
   components: {
-    FormHeader
+    Panel
   },
   data(){
     return{
@@ -95,10 +88,6 @@ export default {
 
 .primary--text {
     color: #18252a !important;
-}
-
-.application .theme--dark.toolbar{
-      background-color: #3aafa9;
 }
 
 .primary {
