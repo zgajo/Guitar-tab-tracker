@@ -35,7 +35,6 @@ module.exports = {
     async put(req, res){
         
         try{
-            console.log(req.body)
             const song = await Song.update(req.body, {
                 where: {
                     id: req.params.id
