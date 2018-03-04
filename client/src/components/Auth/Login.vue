@@ -38,8 +38,8 @@ export default {
   },
   data() {
     return {
-      email: "t@nike.com",
-      password: "Xxx123456",
+      email: "",
+      password: "",
       error: ""
     };
   },
@@ -59,7 +59,7 @@ export default {
         }).then(res => {
           this.$store.dispatch("setToken", res.data.token);
           this.$store.commit("setUser", res.data.user);
-          this.$router.push({ name: "root" });
+          this.$router.push({name: "Songs"})
         });
       } catch (e) {
         this.error = e.response.data.error;

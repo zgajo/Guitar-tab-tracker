@@ -1,8 +1,12 @@
 const Api = require( '@/services/api')
 
 export default {
-    index(){
-        return Api().get('songs')
+    index(value){
+        return Api().get('songs', {
+            params: {
+                value
+            }
+        })
     },
     view(id){
         return Api().get(`songs/${id}`)

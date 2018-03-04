@@ -19,8 +19,11 @@
       <v-icon>search</v-icon>
       <v-select
             :items="songs"
-            v-model="a1"
-            label="Search song"
+            :search-input.sync="searching"
+            :filter="customFilter"
+            v-model="song"
+            item-text="title"
+            label="Search song, artist, genre, album"
             autocomplete
           ></v-select>
 
@@ -43,11 +46,29 @@
     export default {
       data(){
         return {
+            song: null,
+            searching: null,
             songs: [
         
             ],
-            a1: ""
+            a1: "",
+            customFilter (item, queryText, itemText) {
+                
+                const hasValue = val => val != null ? val : ''
+                
+                const text = hasValue(item.title)
+                const query = hasValue(queryText)
+
+                return text.toString()
+                    .toLowerCase()
+                    .indexOf(query.toString().toLowerCase()) > -1
+            }
         }
+      },
+      watch:{
+          async searching(val){
+                this.songs = await this.$store.dispatch("retreiveSongs", val);
+          }
       },
         methods: {
           logout(){

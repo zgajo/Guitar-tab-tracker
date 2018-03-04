@@ -33,11 +33,11 @@ export default new Vuex.Store({
             console.log(token)
             commit("setToken", token);
         },
-        retreiveSongs({state}){
+        retreiveSongs({state}, value){
             return new Promise( resolve => {
-                SongsService.index().then(res => {
+                SongsService.index(value).then(res => {
                     state.songs = res.data;
-                    resolve();
+                    resolve(res.data);
                 });
             }) 
         },
