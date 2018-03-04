@@ -5,6 +5,8 @@
 <li>Wrote unit tests</li>
 <li>Set api calls from frontend as Vue plugins, and set them to communicate with module.exports and require</li>
 <li>UI design</li>
+<li>Fetching id from route params</li>
+<li>Using vuex more</li>
 <li>Set up Vee validator in Vue.js</li>
 </ul>
 
