@@ -71,14 +71,15 @@
 </template>
 <script>
 import SongsService from "@/services/SongsService";
-import ValidationMixin from './SongMixin.js';
+import ValidationMixin from './ValidateMixin.js';
 
 export default {
 
     mixins: [ValidationMixin],
 
-    mounted(){
-        const song = this.$store.getters.getSongById(this.$route.params.id);
+    async mounted(){
+        let songID = this.$route.params.id;
+        const song = await this.$store.dispatch("retreiveSongById", songID);
 
         let vm = this;
         Object.keys(song)

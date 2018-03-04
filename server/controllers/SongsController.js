@@ -17,6 +17,20 @@ module.exports = {
         
     },
 
+    async view(req, res){
+        
+        try{
+            const song = await Song.findById(req.params.id);
+            res.send(song);
+        }
+        catch(e){
+            res.status(500).send({
+                error: "An error has occured trying to fetch the songs"
+            })
+        }
+        
+    },
+
     async post(req, res){
         
         try{

@@ -4,6 +4,9 @@ export default {
     index(){
         return Api().get('songs')
     },
+    view(id){
+        return Api().get(`songs/${id}`)
+    },
     post(songs){
         return Api().post('songs', songs)
     },

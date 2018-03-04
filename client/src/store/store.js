@@ -41,6 +41,13 @@ export default new Vuex.Store({
                 });
             }) 
         },
+        retreiveSongById({state}, id){
+            return new Promise( resolve => {
+                SongsService.view(id).then(res => {
+                    resolve(res.data);
+                });
+            }) 
+        },
         updateSong({state}, song){
             return new Promise( resolve => {
                 const index = state.songs.findIndex( song => song.id == song.id);

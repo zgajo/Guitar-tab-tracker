@@ -17,5 +17,8 @@ router.post('/', SongsController.post);
 /* POST new song */
 router.put('/:id', SongsController.put);
 
+/* GET specific song */
+router.get('/:id', SongsController.view);
+
 
 module.exports = router;

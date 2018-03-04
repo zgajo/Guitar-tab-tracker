@@ -70,7 +70,7 @@
   </div>
 </template>
 <script>
-import ValidationMixin from './SongMixin.js';
+import ValidationMixin from './ValidateMixin.js';
 import SongsService from "@/services/SongsService";
 
 export default {
