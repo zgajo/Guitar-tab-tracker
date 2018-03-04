@@ -26,27 +26,12 @@
                       </v-container>
                     </v-card-media>
                       <v-card-actions>
-                        <v-btn  @click="songLyrics(song.lyrics, song.youtubeId)" flat dark>Listen now</v-btn>
+                        <v-btn  @click="$router.push({name: 'View song',  params: {id: song.id}})" flat dark>View song </v-btn>
                         <v-btn  flat dark @click="$router.push({name: 'Edit song',  params: {id: song.id}})">Edit</v-btn>
                       </v-card-actions>
                     </v-card>
                         
                   </v-flex>
-
-                  <v-dialog v-model="dialog3" max-width="500px">
-                          <v-card>
-                            <v-card-title>
-                              <iframe width="500" height="315"
-                                  :src="'https://www.youtube.com/embed/' + yt">
-                              </iframe>     
-                              <span>{{lyrics}}</span>
-                              <v-spacer></v-spacer>
-                            </v-card-title>
-                            <v-card-actions>
-                              <v-btn color="primary" flat @click.stop="dialog3=false">Close</v-btn>
-                            </v-card-actions>
-                          </v-card>
-                        </v-dialog>
 
                 </v-layout>
               
@@ -62,24 +47,6 @@ import Panel from "../Panel";
 export default {
   async mounted() {
     await this.$store.dispatch("retreiveSongs")
-  },
-  data() {
-    return {
-      dialog3: false,
-      lyrics: null,
-      yt: null
-    };
-  },
-  methods: {
-    songLyrics(lyrics, yt){
-      if(this.lyrics != lyrics && this.yt != yt){
-         this.lyrics = lyrics;
-         this.yt = yt
-      }
-      
-         this.dialog3 = true
-     
-    }
   },
   components: {
     Panel

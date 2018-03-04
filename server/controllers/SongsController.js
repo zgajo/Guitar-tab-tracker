@@ -4,6 +4,7 @@ module.exports = {
     async index(req, res){
         
         try{
+
             let songs = null;
             const search = req.query.value;
 
@@ -55,7 +56,6 @@ module.exports = {
     async post(req, res){
         
         try{
-            console.log(req.body)
             const songs = await Song.create(req.body)
             res.send(songs)
         }

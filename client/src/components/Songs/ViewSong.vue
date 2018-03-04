@@ -24,6 +24,8 @@
                       <v-card-actions>
                         <v-btn  @click="songLyrics(song.lyrics, song.youtubeId)" flat dark>Listen now</v-btn>
                         <v-btn  flat dark @click="$router.push({name: 'Edit song',  params: {id: song.id}})">Edit</v-btn>
+                        <v-btn  flat dark @click="setAsBookmark" v-if="$store.state.isLoggedIn && !bookmark">Bookmark</v-btn>
+                        <v-btn  flat dark @click="setAsUnbookmark" v-if="$store.state.isLoggedIn && bookmark">Unbookmark</v-btn>
                       </v-card-actions>
                     </v-card>
                         
@@ -52,15 +54,30 @@
 </template>
 <script>
 import Panel from "../Panel";
+import BookmarksService from "@/services/BookmarksService";
+
 
 export default {
   async mounted() {
+
     let songID = this.$route.params.id;
     this.song = await this.$store.dispatch("retreiveSongById", songID);
+
+    if(this.$store.state.isLoggedIn){
+
+      this.bookmark = (await BookmarksService.index({ 
+        songId: this.song.id,
+        userId: this.$store.state.user.id
+      })).data;
+
+    }
+
+    
   },
   data() {
     return {
       song: null,
+      bookmark: null,
       dialog3: false,
       lyrics: null,
       yt: null
@@ -75,6 +92,31 @@ export default {
       
          this.dialog3 = true
      
+    },
+    async setAsBookmark(){
+
+      try {
+        const bookmark = (await BookmarksService.post({
+          songId: this.song.id,
+          userId: this.$store.state.user.id
+        })).data;
+
+        this.bookmark = bookmark;
+
+      } catch (error) {
+        console.log(error)
+      }
+
+    },
+    async setAsUnbookmark(){
+
+       try {
+        await BookmarksService.delete(this.bookmark.id);
+        this.bookmark = null;
+      } catch (error) {
+        console.log(error)
+      }
+
     }
   },
   components: {
