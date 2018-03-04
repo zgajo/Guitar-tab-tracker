@@ -11,6 +11,7 @@ export default new Vuex.Store({
         token: null,
         user: null,
         songs: null,
+        searchResult: null,
         isLoggedIn: false
     },
     mutations:{
@@ -26,6 +27,9 @@ export default new Vuex.Store({
         },
         setUser(state, token){
             state.user = token;
+        },
+        clearSearch(state){
+            state.searchResult = null;
         }
     },
     actions:{
@@ -36,7 +40,10 @@ export default new Vuex.Store({
         retreiveSongs({state}, value){
             return new Promise( resolve => {
                 SongsService.index(value).then(res => {
-                    state.songs = res.data;
+                    if(value){
+                        state.searchResult = res.data
+                    }
+                    else state.songs = res.data;
                     resolve(res.data);
                 });
             }) 
@@ -49,8 +56,9 @@ export default new Vuex.Store({
             }) 
         },
         updateSong({state}, song){
+            
             return new Promise( resolve => {
-                const index = state.songs.findIndex( song => song.id == song.id);
+                const index = state.songs.findIndex( s => s.id == song.id);
                 state.songs[index] = song;
             }) 
         },
@@ -61,7 +69,10 @@ export default new Vuex.Store({
         },
         allSongs: (state)=>{
             return state.songs || null;
-        }
+        },
+        getSearchResult: (state)=>{
+            return state.searchResult || null;
+        },
     }
 
 })

@@ -67,7 +67,8 @@
       },
       watch:{
           async searching(val){
-                this.songs = await this.$store.dispatch("retreiveSongs", val);
+            if(!val) this.$store.commit("clearSearch");
+            else this.songs = await this.$store.dispatch("retreiveSongs", val);
           }
       },
         methods: {

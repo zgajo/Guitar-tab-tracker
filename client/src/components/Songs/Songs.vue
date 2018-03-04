@@ -6,7 +6,7 @@
             <router-view v-if="$route.name != 'Songs'"></router-view>
             <v-card  v-if="$route.name == 'Songs' && $store.getters.allSongs">
                 <v-layout row wrap>
-                  <v-flex xs12 lg6 v-for="song in $store.getters.allSongs" :key="song.id">
+                  <v-flex xs12 lg6 v-for="song in $store.getters.getSearchResult || $store.getters.allSongs" :key="song.id">
                     <v-card color="blue-grey darken-2" class="white--text">
                       <v-card-media
                         class="white--text"
